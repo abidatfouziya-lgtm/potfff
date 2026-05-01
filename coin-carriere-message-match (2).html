@@ -1,0 +1,698 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Coin Carrière — Immobilier : recrutez le bon profil</title>
+<link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+<style>
+*,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
+:root{
+  --blue:#1A56E8;
+  --blue-dark:#1340C0;
+  --blue-light:#EEF3FD;
+  --blue-mid:#DBEAFE;
+  --text:#0F172A;
+  --text-mid:#334155;
+  --text-muted:#64748B;
+  --border:#E2E8F0;
+  --white:#FFFFFF;
+  --bg:#F8FAFF;
+  --green:#10B981;
+  --green-light:#ECFDF5;
+}
+html{scroll-behavior:smooth}
+body{
+  font-family:'Plus Jakarta Sans',sans-serif;
+  background:var(--white);
+  color:var(--text);
+  line-height:1.6;
+  overflow-x:hidden;
+}
+
+/* ── ANIMATIONS ── */
+@keyframes fadeUp{from{opacity:0;transform:translateY(24px)}to{opacity:1;transform:translateY(0)}}
+@keyframes fadeIn{from{opacity:0}to{opacity:1}}
+@keyframes pulse-ring{0%{transform:scale(.95);opacity:.8}70%{transform:scale(1.1);opacity:0}100%{transform:scale(1.1);opacity:0}}
+@keyframes float{0%,100%{transform:translateY(0)}50%{transform:translateY(-8px)}}
+@keyframes shimmer{0%{background-position:200% center}100%{background-position:-200% center}}
+
+.anim-1{animation:fadeUp .7s ease both}
+.anim-2{animation:fadeUp .7s .12s ease both}
+.anim-3{animation:fadeUp .7s .22s ease both}
+.anim-4{animation:fadeUp .7s .32s ease both}
+.anim-5{animation:fadeUp .7s .42s ease both}
+
+/* ── HERO ── */
+.hero{
+  min-height:100vh;
+  background:var(--white);
+  display:flex;flex-direction:column;align-items:center;justify-content:center;
+  padding:5rem 1.5rem 4rem;
+  text-align:center;
+  position:relative;
+  overflow:hidden;
+}
+.hero-bg{
+  position:absolute;inset:0;
+  background:radial-gradient(ellipse 80% 60% at 50% 0%, #EEF3FD 0%, transparent 70%);
+  pointer-events:none;
+}
+.hero-grid{
+  position:absolute;inset:0;
+  background-image:linear-gradient(var(--border) 1px,transparent 1px),linear-gradient(90deg,var(--border) 1px,transparent 1px);
+  background-size:48px 48px;
+  opacity:.35;
+  pointer-events:none;
+}
+.hero-glow{
+  position:absolute;top:-120px;left:50%;transform:translateX(-50%);
+  width:600px;height:600px;
+  background:radial-gradient(circle,rgba(26,86,232,.08) 0%,transparent 70%);
+  pointer-events:none;
+}
+
+.match-badge{
+  display:inline-flex;align-items:center;gap:8px;
+  background:var(--blue-light);
+  border:1px solid rgba(26,86,232,.2);
+  color:var(--blue);
+  font-size:.75rem;font-weight:700;letter-spacing:.1em;
+  text-transform:uppercase;
+  padding:.35rem 1rem;border-radius:100px;
+  margin-bottom:1.75rem;
+  position:relative;z-index:1;
+}
+.match-badge-dot{
+  width:7px;height:7px;border-radius:50%;
+  background:var(--blue);
+  position:relative;
+}
+.match-badge-dot::after{
+  content:'';
+  position:absolute;inset:-3px;border-radius:50%;
+  border:1.5px solid var(--blue);
+  animation:pulse-ring 2s ease infinite;
+}
+
+.hero h1{
+  font-size:clamp(2.2rem,5.5vw,4rem);
+  font-weight:800;
+  color:var(--text);
+  line-height:1.1;
+  letter-spacing:-.04em;
+  max-width:780px;
+  margin:0 auto 1.25rem;
+  position:relative;z-index:1;
+}
+.hero h1 .highlight{
+  color:var(--blue);
+  position:relative;
+  display:inline-block;
+}
+.hero h1 .highlight::after{
+  content:'';
+  position:absolute;bottom:-4px;left:0;right:0;height:3px;
+  background:var(--blue);
+  border-radius:2px;
+  opacity:.3;
+}
+
+.hero-sub{
+  font-size:1.1rem;color:var(--text-mid);
+  max-width:520px;margin:0 auto 2.5rem;
+  font-weight:400;line-height:1.7;
+  position:relative;z-index:1;
+}
+
+.hero-ctas{
+  display:flex;align-items:center;justify-content:center;gap:12px;
+  flex-wrap:wrap;
+  margin-bottom:1.25rem;
+  position:relative;z-index:1;
+}
+
+.btn-main{
+  background:var(--blue);
+  color:var(--white);
+  font-weight:700;font-size:1rem;
+  padding:.85rem 2rem;
+  border-radius:10px;
+  text-decoration:none;
+  transition:transform .2s,background .2s,box-shadow .2s;
+  box-shadow:0 4px 20px rgba(26,86,232,.35);
+  display:inline-flex;align-items:center;gap:8px;
+}
+.btn-main:hover{background:var(--blue-dark);transform:translateY(-2px);box-shadow:0 8px 28px rgba(26,86,232,.4)}
+.btn-main svg{transition:transform .2s}
+.btn-main:hover svg{transform:translateX(3px)}
+
+.btn-ghost{
+  background:var(--white);
+  color:var(--text);
+  font-weight:600;font-size:.95rem;
+  padding:.85rem 1.75rem;
+  border-radius:10px;
+  text-decoration:none;
+  border:1.5px solid var(--border);
+  transition:border-color .2s,background .2s;
+}
+.btn-ghost:hover{border-color:var(--blue);background:var(--blue-light);color:var(--blue)}
+
+.hero-trust{
+  display:inline-flex;align-items:center;gap:6px;
+  font-size:.8rem;color:var(--text-muted);font-weight:500;
+  position:relative;z-index:1;
+}
+.hero-trust svg{color:var(--green)}
+
+/* ── HERO CARD VISUAL ── */
+.hero-card-wrap{
+  margin-top:3.5rem;
+  position:relative;z-index:1;
+  animation:float 4s ease-in-out infinite;
+}
+.hero-card{
+  background:var(--white);
+  border:1px solid var(--border);
+  border-radius:16px;
+  padding:1.5rem;
+  max-width:420px;
+  margin:0 auto;
+  box-shadow:0 20px 60px rgba(0,0,0,.08),0 4px 16px rgba(26,86,232,.06);
+  text-align:left;
+}
+.card-header{
+  display:flex;align-items:center;gap:12px;margin-bottom:1.25rem;
+}
+.card-avatar{
+  width:42px;height:42px;border-radius:10px;
+  background:var(--blue);
+  display:flex;align-items:center;justify-content:center;
+  flex-shrink:0;
+}
+.card-title{font-weight:700;font-size:.95rem;color:var(--text)}
+.card-sub{font-size:.78rem;color:var(--text-muted)}
+.card-stat-row{
+  display:flex;gap:10px;margin-bottom:1rem;
+}
+.card-stat{
+  flex:1;background:var(--bg);border-radius:8px;padding:.75rem;
+  border:1px solid var(--border);
+}
+.card-stat-n{font-weight:800;font-size:1.3rem;color:var(--blue);line-height:1}
+.card-stat-l{font-size:.7rem;color:var(--text-muted);margin-top:2px}
+.card-match{
+  background:var(--green-light);border-radius:8px;padding:.6rem .9rem;
+  display:flex;align-items:center;gap:8px;
+  font-size:.8rem;color:#059669;font-weight:600;
+  border:1px solid rgba(16,185,129,.2);
+}
+
+/* ── LOGOS BAR ── */
+.logos-bar{
+  background:var(--bg);
+  border-top:1px solid var(--border);
+  border-bottom:1px solid var(--border);
+  padding:1.75rem 1.5rem;
+  text-align:center;
+}
+.logos-label{
+  font-size:.72rem;font-weight:600;letter-spacing:.1em;
+  text-transform:uppercase;color:var(--text-muted);
+  margin-bottom:1.25rem;
+}
+.logos-row{
+  display:flex;align-items:center;justify-content:center;
+  gap:2rem;flex-wrap:wrap;
+}
+.logo-placeholder{
+  height:32px;border-radius:6px;
+  background:var(--border);
+  display:flex;align-items:center;justify-content:center;
+  padding:0 1.25rem;
+  font-size:.72rem;font-weight:700;
+  color:var(--text-muted);letter-spacing:.05em;
+  min-width:90px;
+}
+
+/* ── STATS ── */
+.stats-strip{
+  display:flex;justify-content:center;gap:4rem;flex-wrap:wrap;
+  padding:3rem 1.5rem;
+  background:var(--white);
+  border-bottom:1px solid var(--border);
+}
+.stat-item{text-align:center}
+.stat-n{
+  font-size:2.4rem;font-weight:800;color:var(--text);
+  line-height:1;margin-bottom:.25rem;
+  background:linear-gradient(135deg,var(--blue) 0%,#5B8DEF 100%);
+  -webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text;
+}
+.stat-l{font-size:.82rem;color:var(--text-muted);font-weight:500}
+
+/* ── SECTION BASE ── */
+section{padding:5rem 1.5rem}
+.container{max-width:1040px;margin:0 auto}
+.section-eyebrow{
+  display:inline-flex;align-items:center;gap:6px;
+  font-size:.72rem;font-weight:700;letter-spacing:.1em;
+  text-transform:uppercase;color:var(--blue);
+  margin-bottom:.9rem;
+}
+.section-eyebrow::before{
+  content:'';width:16px;height:2px;background:var(--blue);border-radius:2px;
+}
+.section-h{
+  font-size:clamp(1.7rem,3vw,2.5rem);font-weight:800;
+  color:var(--text);letter-spacing:-.03em;line-height:1.15;
+  margin-bottom:1rem;
+}
+.section-p{font-size:.97rem;color:var(--text-mid);line-height:1.75;max-width:520px}
+
+/* ── PROBLEM SOLUTION ── */
+.prob-sol{background:var(--white)}
+.prob-sol-grid{
+  display:grid;grid-template-columns:1fr 1fr;gap:2rem;margin-top:3rem;
+  align-items:start;
+}
+@media(max-width:720px){.prob-sol-grid{grid-template-columns:1fr}}
+.col-problem{
+  background:#FFF5F5;border:1px solid #FED7D7;
+  border-radius:16px;padding:2rem;
+}
+.col-problem h3{font-size:1rem;font-weight:700;color:#C53030;margin-bottom:1.25rem;display:flex;align-items:center;gap:8px}
+.col-problem h3::before{content:'';width:10px;height:10px;border-radius:50%;background:#FC8181;flex-shrink:0}
+.col-solution{
+  background:var(--blue-light);border:1px solid rgba(26,86,232,.15);
+  border-radius:16px;padding:2rem;
+}
+.col-solution h3{font-size:1rem;font-weight:700;color:var(--blue-dark);margin-bottom:1.25rem;display:flex;align-items:center;gap:8px}
+.col-solution h3::before{content:'';width:10px;height:10px;border-radius:50%;background:var(--blue);flex-shrink:0}
+.point-list{list-style:none}
+.point-list li{
+  display:flex;align-items:flex-start;gap:10px;
+  padding:.65rem 0;border-bottom:1px solid rgba(0,0,0,.06);
+  font-size:.9rem;color:var(--text-mid);line-height:1.55;
+}
+.point-list li:last-child{border-bottom:none;padding-bottom:0}
+.prob-icon{
+  width:20px;height:20px;flex-shrink:0;margin-top:1px;
+  display:flex;align-items:center;justify-content:center;
+}
+
+/* ── STEPS ── */
+.steps-section{background:var(--bg);border-top:1px solid var(--border);border-bottom:1px solid var(--border)}
+.steps-grid{
+  display:grid;grid-template-columns:repeat(4,1fr);gap:1.5rem;
+  margin-top:3rem;
+}
+@media(max-width:720px){.steps-grid{grid-template-columns:1fr 1fr}}
+@media(max-width:480px){.steps-grid{grid-template-columns:1fr}}
+.step-card{
+  background:var(--white);border:1px solid var(--border);
+  border-radius:14px;padding:1.5rem;
+  position:relative;
+  transition:border-color .25s,transform .25s,box-shadow .25s;
+}
+.step-card:hover{border-color:var(--blue);transform:translateY(-3px);box-shadow:0 8px 28px rgba(26,86,232,.1)}
+.step-num{
+  width:36px;height:36px;border-radius:9px;
+  background:var(--blue);color:var(--white);
+  font-weight:800;font-size:.95rem;
+  display:flex;align-items:center;justify-content:center;
+  margin-bottom:1rem;
+}
+.step-card h3{font-size:.97rem;font-weight:700;color:var(--text);margin-bottom:.4rem}
+.step-card p{font-size:.82rem;color:var(--text-muted);line-height:1.6}
+.step-connector{
+  position:absolute;top:30px;right:-14px;
+  width:14px;height:14px;z-index:2;
+  display:flex;align-items:center;justify-content:center;
+}
+
+/* ── TESTIMONIAL ── */
+.social-section{background:var(--white)}
+.testimonial-wrap{
+  max-width:680px;margin:3rem auto 0;
+  background:var(--bg);border:1px solid var(--border);
+  border-radius:20px;padding:2.5rem;
+  position:relative;
+}
+.testimonial-wrap::before{
+  content:'\201C';
+  font-size:6rem;line-height:.8;
+  color:var(--blue);opacity:.12;
+  position:absolute;top:1.5rem;left:2rem;
+  font-family:Georgia,serif;
+}
+.testimonial-text{
+  font-size:1.05rem;line-height:1.75;color:var(--text-mid);
+  font-style:italic;margin-bottom:1.5rem;
+  position:relative;z-index:1;
+}
+.testimonial-author{display:flex;align-items:center;gap:12px}
+.t-avatar{
+  width:44px;height:44px;border-radius:50%;
+  background:var(--blue);color:var(--white);
+  font-weight:700;font-size:.9rem;
+  display:flex;align-items:center;justify-content:center;flex-shrink:0;
+}
+.t-name{font-weight:700;font-size:.9rem;color:var(--text)}
+.t-role{font-size:.78rem;color:var(--text-muted)}
+.t-stars{color:#F59E0B;font-size:.85rem;letter-spacing:1px;margin-bottom:2px}
+
+/* ── FINAL CTA ── */
+.final-cta{
+  background:var(--blue);
+  text-align:center;
+  padding:6rem 1.5rem;
+  position:relative;overflow:hidden;
+}
+.final-cta::before{
+  content:'';
+  position:absolute;inset:0;
+  background:radial-gradient(ellipse 80% 80% at 50% 0%,rgba(255,255,255,.08) 0%,transparent 70%);
+  pointer-events:none;
+}
+.final-cta::after{
+  content:'';
+  position:absolute;bottom:-60px;left:50%;transform:translateX(-50%);
+  width:500px;height:200px;
+  background:rgba(0,0,0,.08);
+  border-radius:50%;filter:blur(40px);
+  pointer-events:none;
+}
+.final-cta h2{
+  font-size:clamp(1.9rem,4vw,3rem);
+  font-weight:800;color:var(--white);
+  letter-spacing:-.03em;line-height:1.15;
+  margin-bottom:1rem;
+  position:relative;z-index:1;
+}
+.final-cta p{
+  font-size:1.05rem;color:rgba(255,255,255,.75);
+  margin-bottom:2.5rem;
+  position:relative;z-index:1;
+}
+.btn-white{
+  background:var(--white);color:var(--blue);
+  font-weight:800;font-size:1.05rem;
+  padding:.95rem 2.25rem;
+  border-radius:10px;
+  text-decoration:none;
+  display:inline-flex;align-items:center;gap:8px;
+  transition:transform .2s,box-shadow .2s;
+  box-shadow:0 4px 20px rgba(0,0,0,.15);
+  position:relative;z-index:1;
+}
+.btn-white:hover{transform:translateY(-2px);box-shadow:0 8px 32px rgba(0,0,0,.2)}
+.final-note{
+  margin-top:1rem;font-size:.8rem;
+  color:rgba(255,255,255,.5);
+  position:relative;z-index:1;
+}
+
+/* ── FOOTER ── */
+footer{
+  background:var(--text);
+  padding:1.5rem;text-align:center;
+  font-size:.78rem;color:rgba(255,255,255,.35);
+}
+footer a{color:rgba(255,255,255,.5);text-decoration:none}
+
+/* ── STICKY CTA (mobile) ── */
+.sticky-bar{
+  position:fixed;bottom:0;left:0;right:0;z-index:99;
+  background:var(--white);border-top:1px solid var(--border);
+  padding:.75rem 1.5rem;
+  display:flex;align-items:center;gap:10px;
+  box-shadow:0 -4px 24px rgba(0,0,0,.08);
+}
+.sticky-bar .btn-main{flex:1;justify-content:center;font-size:.95rem}
+@media(min-width:640px){.sticky-bar{display:none}}
+</style>
+</head>
+<body>
+
+<!-- ───── HERO ───── -->
+<section class="hero">
+  <div class="hero-bg"></div>
+  <div class="hero-grid"></div>
+  <div class="hero-glow"></div>
+
+  <div class="match-badge anim-1">
+    <div class="match-badge-dot"></div>
+    Plateforme recrutement immobilier
+  </div>
+
+  <h1 class="anim-2">
+    Immobilier : recrutez<br><span class="highlight">le bon profil</span>
+  </h1>
+
+  <p class="hero-sub anim-3">
+    Coin Carrière connecte votre agence avec des <strong>négociateurs immobiliers qualifiés</strong>
+    — publiez une offre et recevez des candidats en moins de 7 jours.
+  </p>
+
+  <div class="hero-ctas anim-4">
+    <a href="#form" class="btn-main">
+      Publier une offre
+      <svg width="16" height="16" viewBox="0 0 16 16" fill="none">
+        <path d="M3 8h10M9 4l4 4-4 4" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/>
+      </svg>
+    </a>
+    <a href="#form" class="btn-ghost">Commencer gratuitement</a>
+  </div>
+
+  <div class="hero-trust anim-5">
+    <svg width="14" height="14" viewBox="0 0 14 14" fill="none">
+      <path d="M2 7.5l3.5 3L12 3" stroke="var(--green)" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/>
+    </svg>
+    Sans engagement &nbsp;·&nbsp;
+    <svg width="14" height="14" viewBox="0 0 14 14" fill="none">
+      <path d="M2 7.5l3.5 3L12 3" stroke="var(--green)" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/>
+    </svg>
+    Premiers candidats en 48h &nbsp;·&nbsp;
+    <svg width="14" height="14" viewBox="0 0 14 14" fill="none">
+      <path d="M2 7.5l3.5 3L12 3" stroke="var(--green)" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/>
+    </svg>
+    100% immobilier
+  </div>
+
+  <!-- Floating UI card -->
+  <div class="hero-card-wrap anim-5">
+    <div class="hero-card">
+      <div class="card-header">
+        <div class="card-avatar">
+          <svg width="20" height="20" viewBox="0 0 20 20" fill="none">
+            <path d="M10 2L3 7v11h5v-5h4v5h5V7L10 2z" fill="white" opacity=".9"/>
+          </svg>
+        </div>
+        <div>
+          <div class="card-title">Offre publiée · Négociateur immobilier</div>
+          <div class="card-sub">Paris 8e · CDI · il y a 2 heures</div>
+        </div>
+      </div>
+      <div class="card-stat-row">
+        <div class="card-stat">
+          <div class="card-stat-n">14</div>
+          <div class="card-stat-l">Candidatures reçues</div>
+        </div>
+        <div class="card-stat">
+          <div class="card-stat-n">3j</div>
+          <div class="card-stat-l">Délai moyen</div>
+        </div>
+        <div class="card-stat">
+          <div class="card-stat-n">91%</div>
+          <div class="card-stat-l">Profils ciblés</div>
+        </div>
+      </div>
+      <div class="card-match">
+        <svg width="14" height="14" viewBox="0 0 14 14" fill="none">
+          <path d="M2 7l3 3 7-6" stroke="#059669" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/>
+        </svg>
+        Nouveau candidat qualifié — Expérience transaction 4 ans
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ───── LOGOS BAR ───── -->
+<div class="logos-bar">
+  <div class="logos-label">+500 agences et promoteurs nous font confiance</div>
+  <div class="logos-row">
+    <div class="logo-placeholder">CENTURY 21</div>
+    <div class="logo-placeholder">ORPI</div>
+    <div class="logo-placeholder">LAFORÊT</div>
+    <div class="logo-placeholder">NEXITY</div>
+    <div class="logo-placeholder">GUY HOQUET</div>
+  </div>
+</div>
+
+<!-- ───── STATS ───── -->
+<div class="stats-strip">
+  <div class="stat-item">
+    <div class="stat-n">+500</div>
+    <div class="stat-l">recruteurs utilisent Coin Carrière</div>
+  </div>
+  <div class="stat-item">
+    <div class="stat-n">7 jours</div>
+    <div class="stat-l">recrutement en moins de 7 jours</div>
+  </div>
+  <div class="stat-item">
+    <div class="stat-n">3 200+</div>
+    <div class="stat-l">négociateurs &amp; commerciaux actifs</div>
+  </div>
+</div>
+
+<!-- ───── PROBLEM → SOLUTION ───── -->
+<section class="prob-sol">
+  <div class="container">
+    <div class="section-eyebrow">Pourquoi Coin Carrière</div>
+    <h2 class="section-h">Le recrutement immobilier<br>ne doit plus être un calvaire</h2>
+    <div class="prob-sol-grid">
+      <div class="col-problem">
+        <h3>Avant Coin Carrière</h3>
+        <ul class="point-list">
+          <li>
+            <div class="prob-icon">
+              <svg width="16" height="16" viewBox="0 0 16 16" fill="none"><circle cx="8" cy="8" r="7" stroke="#FC8181" stroke-width="1.5"/><path d="M5 5l6 6M11 5l-6 6" stroke="#FC8181" stroke-width="1.5" stroke-linecap="round"/></svg>
+            </div>
+            Recrutement qui s'étire sur des semaines sans résultat
+          </li>
+          <li>
+            <div class="prob-icon">
+              <svg width="16" height="16" viewBox="0 0 16 16" fill="none"><circle cx="8" cy="8" r="7" stroke="#FC8181" stroke-width="1.5"/><path d="M5 5l6 6M11 5l-6 6" stroke="#FC8181" stroke-width="1.5" stroke-linecap="round"/></svg>
+            </div>
+            CV hors sujet — aucun candidat ne connaît l'immobilier
+          </li>
+          <li>
+            <div class="prob-icon">
+              <svg width="16" height="16" viewBox="0 0 16 16" fill="none"><circle cx="8" cy="8" r="7" stroke="#FC8181" stroke-width="1.5"/><path d="M5 5l6 6M11 5l-6 6" stroke="#FC8181" stroke-width="1.5" stroke-linecap="round"/></svg>
+            </div>
+            Perte de temps à trier des dossiers inadaptés
+          </li>
+          <li>
+            <div class="prob-icon">
+              <svg width="16" height="16" viewBox="0 0 16 16" fill="none"><circle cx="8" cy="8" r="7" stroke="#FC8181" stroke-width="1.5"/><path d="M5 5l6 6M11 5l-6 6" stroke="#FC8181" stroke-width="1.5" stroke-linecap="round"/></svg>
+            </div>
+            Mandats perdus faute d'un négociateur disponible
+          </li>
+        </ul>
+      </div>
+      <div class="col-solution">
+        <h3>Avec Coin Carrière</h3>
+        <ul class="point-list">
+          <li>
+            <div class="prob-icon">
+              <svg width="16" height="16" viewBox="0 0 16 16" fill="none"><circle cx="8" cy="8" r="7" stroke="var(--blue)" stroke-width="1.5"/><path d="M5 8.5l2 2 4-4" stroke="var(--blue)" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg>
+            </div>
+            Candidats qualifiés en moins de 48h, ciblés sur votre métier
+          </li>
+          <li>
+            <div class="prob-icon">
+              <svg width="16" height="16" viewBox="0 0 16 16" fill="none"><circle cx="8" cy="8" r="7" stroke="var(--blue)" stroke-width="1.5"/><path d="M5 8.5l2 2 4-4" stroke="var(--blue)" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg>
+            </div>
+            Plateforme 100% spécialisée : transaction, mandat, agence
+          </li>
+          <li>
+            <div class="prob-icon">
+              <svg width="16" height="16" viewBox="0 0 16 16" fill="none"><circle cx="8" cy="8" r="7" stroke="var(--blue)" stroke-width="1.5"/><path d="M5 8.5l2 2 4-4" stroke="var(--blue)" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg>
+            </div>
+            Profils pré-filtrés — négociateurs, assistants, commerciaux
+          </li>
+          <li>
+            <div class="prob-icon">
+              <svg width="16" height="16" viewBox="0 0 16 16" fill="none"><circle cx="8" cy="8" r="7" stroke="var(--blue)" stroke-width="1.5"/><path d="M5 8.5l2 2 4-4" stroke="var(--blue)" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg>
+            </div>
+            Recrutement finalisé en moins de 7 jours — garanti
+          </li>
+        </ul>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ───── PROCESS ───── -->
+<section class="steps-section">
+  <div class="container">
+    <div style="text-align:center;margin-bottom:0">
+      <div class="section-eyebrow" style="justify-content:center">Comment ça marche</div>
+      <h2 class="section-h" style="text-align:center;max-width:500px;margin:0 auto">4 étapes. Un seul objectif.</h2>
+    </div>
+    <div class="steps-grid">
+      <div class="step-card">
+        <div class="step-num">1</div>
+        <h3>Publiez votre offre</h3>
+        <p>Décrivez le poste en 5 min. Formulaire guidé, spécialisé immobilier — transaction, mandat, secteur.</p>
+      </div>
+      <div class="step-card">
+        <div class="step-num">2</div>
+        <h3>Recevez des candidats qualifiés</h3>
+        <p>Notre matching envoie votre offre aux négociateurs et commerciaux correspondants. Alertes en temps réel.</p>
+      </div>
+      <div class="step-card">
+        <div class="step-num">3</div>
+        <h3>Évaluez facilement</h3>
+        <p>Tableau de bord simple : consultez les profils, comparez, notez. Aucune formation requise.</p>
+      </div>
+      <div class="step-card">
+        <div class="step-num">4</div>
+        <h3>Recrutez rapidement</h3>
+        <p>Contactez directement. Planifiez l'entretien. Votre agence a son nouveau négociateur en moins de 7 jours.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ───── SOCIAL PROOF ───── -->
+<section class="social-section">
+  <div class="container" style="text-align:center">
+    <div class="section-eyebrow" style="justify-content:center">Témoignage</div>
+    <h2 class="section-h" style="text-align:center">Ils ont recruté avec Coin Carrière</h2>
+    <div class="testimonial-wrap">
+      <p class="testimonial-text">
+        "En 4 jours, j'avais 11 candidatures de négociateurs avec une vraie expérience en transaction immobilière.
+        Sur les plateformes généralistes, j'attendais 3 semaines pour rien. Coin Carrière comprend notre métier —
+        c'est la seule plateforme où les candidats connaissent ce qu'est un mandat."
+      </p>
+      <div class="testimonial-author">
+        <div class="t-avatar">MB</div>
+        <div>
+          <div class="t-stars">★★★★★</div>
+          <div class="t-name">Marc-Antoine Boulanger</div>
+          <div class="t-role">Directeur agence — Orpi Levallois-Perret</div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ───── FINAL CTA ───── -->
+<section class="final-cta" id="form">
+  <h2>Votre prochain recrutement<br>commence ici</h2>
+  <p>Publiez votre offre maintenant. Premiers candidats sous 48h. Sans engagement.</p>
+  <a href="#" class="btn-white">
+    Commencer maintenant
+    <svg width="16" height="16" viewBox="0 0 16 16" fill="none">
+      <path d="M3 8h10M9 4l4 4-4 4" stroke="var(--blue)" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+    </svg>
+  </a>
+  <div class="final-note">Gratuit pour votre première offre · Aucune carte bancaire requise · Résiliation à tout moment</div>
+</section>
+
+<!-- FOOTER -->
+<footer>
+  <p style="margin-bottom:.35rem;color:rgba(255,255,255,.55);font-weight:600">CoinCarrière &mdash; La plateforme recrutement de l'immobilier</p>
+  <p>© 2025 Coin Carrière &nbsp;·&nbsp; <a href="#">Mentions légales</a> &nbsp;·&nbsp; <a href="#">Confidentialité</a> &nbsp;·&nbsp; <a href="#">Contact</a></p>
+</footer>
+
+<!-- STICKY CTA — mobile only -->
+<div class="sticky-bar">
+  <a href="#form" class="btn-main">Publier une offre gratuitement →</a>
+</div>
+
+</body>
+</html>
